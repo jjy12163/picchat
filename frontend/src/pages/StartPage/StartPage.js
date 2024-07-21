@@ -5,14 +5,6 @@ import styles from './StartPage.module.css';
 
 const StartPage = () => {
     const navigate = useNavigate();
-    const [userNames, setUserNames] = useState([]);
-
-    useEffect(() => {
-        fetch('http://localhost:5000/api/users')
-            .then(response => response.json())
-            .then(data => setUserNames(data))
-            .catch(error => console.error('Error fetching user names:', error));
-    }, []);
 
     const buttonOnClick = () => {
         navigate('/main');
@@ -31,14 +23,6 @@ const StartPage = () => {
                     className={styles.startButton}
                     onClick={buttonOnClick}
                 >상담 시작하기</button>
-                <div className={styles.userList}>
-                    <h3>flask, mysql 연결 test<br></br>사용자 이름 출력 예시</h3>
-                    <ul>
-                        {userNames.map((userName, index) => (
-                            <li key={index}>{userName}</li>
-                        ))}
-                    </ul>
-                </div>
             </div>
         </div>
     );
