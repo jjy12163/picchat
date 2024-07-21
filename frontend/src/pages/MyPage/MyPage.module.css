@@ -1,0 +1,85 @@
+.container {
+    margin: 0px 50px;
+}
+
+h2 {
+    margin-left: -10px;
+}
+
+.infoContainer {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.profilePicContainer {
+    width: 60px;    
+}
+
+.profilePic {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.rightContainer{
+    margin-top: 5px;
+}
+
+.googleName {
+    font-weight: bold;
+}
+
+.uploadButton {
+    background-color: white;
+    border: none;
+    margin-left: -5px;
+    color: rgba(130, 130, 130, 1);
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.text {
+    margin-top: 20px;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+input{
+    width: 500px;
+    height: 25px;
+    margin-top: 3px;
+    background-color: white;
+    border-radius: 7px;
+    border-width: 1px;
+    border-color: rgba(224, 224, 224, 1);
+    border-style: solid;
+}
+
+.buttonContainer button {
+    width: 120px;
+    height: 35px;
+    border: none;
+    border-radius: 7px;
+    font-size: 12.5px;
+    font-weight: bold;
+}
+
+.historyButton {
+    background-color: black;
+    color: white;
+    margin: 20px 25px 0px 0px;
+}
+
+.deleteAccountButton {
+    background-color: white;
+    color: gray;
+    border: none;
+    font-size: 11px;
+    margin-top: 100px;
+}

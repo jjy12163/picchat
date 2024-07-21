@@ -1,0 +1,50 @@
+document.addEventListener("DOMContentLoaded", function() {
+    const chatWindow = document.getElementById('chat-window');
+    const userInput = document.getElementById('user-input');
+
+    function sendMessage() {
+        const message = userInput.value;
+        if (message.trim() === "") return;
+
+        appendMessage(message, 'user-message');
+        userInput.value = '';
+
+        // Simulate bot response
+        setTimeout(() => {
+            let botResponse = getBotResponse(message);
+            appendMessage(botResponse, 'bot-message');
+        }, 1000);
+    }
+
+    function appendMessage(message, className) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `chat-message ${className}`;
+        messageDiv.textContent = message;
+        chatWindow.appendChild(messageDiv);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+
+    function getBotResponse(message) {
+        // Simple response logic
+        switch (message.toLowerCase()) {
+            case "대화 종료":
+                return "대화를 종료합니다. 좋은 하루 되세요!";
+            case "happy":
+                return "오늘 좋은 일이 있었나요?";
+            case "surprise":
+                return "무언가에 놀라신 것 같네요.";
+            case "neutral":
+                return "지금 마음이 평온하시군요.";
+            default:
+                return "무슨 일이 있었나요? 힘들어 보이세요.";
+        }
+    }
+
+    window.sendMessage = sendMessage;
+
+    userInput.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+    });
+});

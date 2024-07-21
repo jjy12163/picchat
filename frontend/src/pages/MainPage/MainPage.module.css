@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 110px;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.icon {
+    padding-left: 5px;
+    margin-top: 40px;
+}
+
+.imageContainer {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(247, 247, 247, 1);
+}
+
+.previewImage {
+    object-fit: cover;
+    width: 200px;
+}
+
+.uploadButton {
+    background-color: white;
+    border: none;
+    font-weight: bold;
+    font-size: 15px;
+    height: 30px;
+}

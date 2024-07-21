@@ -1,0 +1,93 @@
+.title {
+    font-size: large;
+    font-weight: bold;
+    margin: 20px 0px 10px 25px;
+}
+
+.topContainer {
+    margin-left: 25px;
+    display: flex;
+    gap: 10px;
+}
+
+.searchContainer {
+    border: 1px solid rgba(224, 224, 224, 1);
+    border-radius: 7px;
+    display: flex;
+    color: gray;
+    padding-left: 5px;
+    align-items: center;
+}
+
+.searchIcon {
+    margin-right: 5px;
+}
+
+.inputBox {
+    border: none;
+}
+
+.inputBox:focus {
+    outline: none;
+}
+
+.filterButton {
+    display: flex;
+    padding: 5px;
+    border: 1px solid rgba(224, 224, 224, 1);
+    border-radius: 7px;
+    color: gray;
+    gap: 3px;
+    align-items: center;
+}
+
+.grayText {
+    color: gray;
+    font-size: 14px;
+}
+
+.main {
+    margin: 25px 20px;
+}
+
+.classify {
+    display: flex;
+    gap: 50px;
+    font-size: 15px;
+    font-weight: 600;
+    margin-left: 5px;
+    border-bottom: 1px solid gray;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.listContainer {
+    margin-top: 10px;
+    padding-left: 12px;
+    display: flex;
+    gap: 43px;
+    align-items: center;
+    border-bottom: 0.5px solid gray;
+    padding-bottom: 5px;
+}
+
+.date {
+   color: rgba(130, 130, 130, 1);
+   font-size: 14px;
+}
+
+.userImageContainer {
+    width: 40px;
+}
+
+.userImage {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.moreIcon {
+    margin-left: auto;
+    margin-right: 20px;
+}
