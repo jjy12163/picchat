@@ -1,0 +1,25 @@
+.logo {
+    font-size: 17px;
+    font-weight: 700;
+    margin: 10px 20px;
+}
+
+.container {
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.loginButton {
+    width: 200px;
+}
+
+.text {
+    font-size: 13px;
+}

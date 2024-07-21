@@ -1,0 +1,87 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loadingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin-top: 150px;   
+}
+
+.container {
+    margin-top: 80px;
+}
+
+.topContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.text {
+    font-size: 14.5px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.imageContainer {
+    width: 120px;    
+}      
+
+.image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+}
+
+.tagContainer {
+    margin-top: 10px;
+    margin-bottom: 40px;
+    display: flex;
+    width: 300px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.tagselected {
+    background-color: black;
+    color: white;
+    font-size: 12px;
+    padding: 3px 20px;
+    padding-bottom: 4px;
+    margin: 10px 5px;
+    border-radius: 10px;
+    justify-content: center;
+}
+
+.tagdefault {
+    background-color: rgba(245, 245, 245, 1);
+    color: black;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 20px;
+    padding-bottom: 4px;
+    margin: 10px 5px;
+    border-radius: 10px;
+    justify-content: center;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.button {
+    width: 100px;
+    height: 40px;
+    border: none;
+    border-radius: 7px;
+    font-size: 12.5px;
+    font-weight: bold;
+    background-color: rgba(224, 224, 224, 1);
+}
