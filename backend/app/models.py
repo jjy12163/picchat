@@ -1,5 +1,5 @@
 from . import db
-from datetime import datetime
+from sqlalchemy.sql import func
 
 class User(db.Model):
     __tablename__ = 'user'
@@ -15,5 +15,7 @@ class FaceImage(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     image = db.Column(db.LargeBinary, nullable=True)
     filename = db.Column(db.String(255), nullable=False)
-    uploaded_at = db.Column(db.DateTime, default=datetime)
+    uploaded_at = db.Column(db.DateTime, server_default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.idUser'), nullable=False)
+
+
