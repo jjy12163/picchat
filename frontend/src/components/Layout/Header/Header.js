@@ -4,45 +4,52 @@ import styles from './header.module.css';
 import defaultProfile from '../../../assets/images/profile.jpg';
 
 const Header = () => {
-  const [profileImage, setProfileImage] = useState(defaultProfile);
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchProfileImage = async () => {
-      try {
-        const response = await fetch('/..');
-        if (response.ok) {
-          const data = await response.json();
-          if (data.profileImage) {
-            setProfileImage(data.profileImage);
-          }
-        } else {
-          console.error('오류..', response.statusText);
-        }
-      } catch (error) {
-        console.error('오류..', error);
-      }
-    };
+ const navigate = useNavigate();
+ const [profileImage, setProfileImage] = useState(defaultProfile);
 
-    fetchProfileImage();
-  }, []);
-
-  const handleLogout = async () => {
+ useEffect(() => {
+  const fetchUserData = async () => {
     try {
-      const response = await fetch('/logout', {
-        method: 'POST', 
-        credentials: 'include',
+      const response = await fetch('http://localhost:5000/api/user/', {
+        credentials: 'include'
       });
+      if (!response.ok) {
+        if (response.status === 401) {
+          console.error('Unauthorized');
+          return;
+        }
+        throw new Error('네트워크 오류');
+      }
+      const data = await response.json();
+      if (data.profile_image) {
+        setProfileImage(data.profile_image);
+      }
+    } catch (error) {
+      console.error('사용자 정보를 불러오는 데 실패했습니다.', error);
+    }
+  };
 
+  fetchUserData();
+}, []);
+
+const handleLogout = () => {
+  fetch('http://localhost:5000/api/auth/logout', {
+    method: 'POST',
+    credentials: 'include'
+  })
+    .then(response => {
       if (response.ok) {
         navigate('/login');
       } else {
-        console.error('로그아웃 실패:', response.statusText);
+        throw new Error('로그아웃 실패');
       }
-    } catch (error) {
-      console.error('로그아웃 중 에러:', error);
-    }
-  };
+    })
+    .catch(error => {
+      console.error('로그아웃 실패:', error);
+    });
+};
+
 
   return (
     <header className={styles.header}>
