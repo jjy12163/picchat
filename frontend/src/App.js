@@ -14,13 +14,14 @@ import ChatList from './pages/ChatPage/ChatList';
 
 function App() {
   const location = useLocation();
-  const noHeaderPaths = ['/chat', '/history', '/login'];
+  const noHeaderPaths = ['/chat', '/history', '/login', '/start'];
+  console.log('Current location:', location.pathname);  // 디버그 정보 추가
 
   return (
     <div>
       {!noHeaderPaths.includes(location.pathname) && <Header />}
       <Routes>
-        <Route path="/" element={<Navigate replace to="/login" />} />
+        <Route path="/" element={<Navigate replace to="/start" />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/main" element={<MainPage />} />
         <Route path="/chat" element={<ChatPage />} />
@@ -31,7 +32,7 @@ function App() {
         <Route path="/start" element={<StartPage />} />
         <Route path="/list" element={<ChatList />} />
       </Routes>
-      <Footer />
+      {!noHeaderPaths.includes(location.pathname) && <Footer />}
     </div>
   );
 }
