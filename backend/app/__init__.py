@@ -2,7 +2,6 @@ from flask import Flask, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_cors import CORS
-from flask_session import Session
 import os
 
 db = SQLAlchemy()
@@ -12,7 +11,6 @@ def create_app():
     app = Flask(__name__, static_folder="build")
     app.config.from_object(os.getenv('FLASK_CONFIG') or 'config.Config')
     CORS(app, supports_credentials=True, resources={r"/*": {"origins": "*"}})
-    Session(app)
 
     # DB 설정
     db.init_app(app)

@@ -4,13 +4,6 @@
     align-items: center;
 }
 
-.loadingContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    margin-top: 150px;   
-}
-
 .container {
     margin-top: 80px;
 }
@@ -19,12 +12,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.text {
-    font-size: 14.5px;
-    font-weight: bold;
-    margin-top: 10px;
 }
 
 .imageContainer {

@@ -11,11 +11,11 @@ import MyPage from './pages/MyPage/MyPage';
 import ChatHistory from './pages/ChatPage/ChatHistory';
 import StartPage from './pages/StartPage/StartPage';
 import ChatList from './pages/ChatPage/ChatList';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   const location = useLocation();
   const noHeaderPaths = ['/chat', '/history', '/login', '/start'];
-  console.log('Current location:', location.pathname);  // 디버그 정보 추가
 
   return (
     <div>
@@ -23,14 +23,14 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate replace to="/start" />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/main" element={<MainPage />} />
-        <Route path="/chat" element={<ChatPage />} />
-        <Route path="/analyze" element={<PicAnalyzePage />} />
-        <Route path="/review" element={<ReviewPage />} />
-        <Route path="/mypage" element={<MyPage />} />
-        <Route path="/history" element={<ChatHistory />} />
+        <Route path="/main" element={<PrivateRoute element={<MainPage />} />} />
+        <Route path="/chat" element={<PrivateRoute element={<ChatPage />} />} />
+        <Route path="/analyze" element={<PrivateRoute element={<PicAnalyzePage />} />} />
+        <Route path="/review" element={<PrivateRoute element={<ReviewPage />} />} />
+        <Route path="/mypage" element={<PrivateRoute element={<MyPage />}/>} />
+        <Route path="/history" element={<PrivateRoute element={<ChatHistory />}/>} />
         <Route path="/start" element={<StartPage />} />
-        <Route path="/list" element={<ChatList />} />
+        <Route path="/list" element={<PrivateRoute element={<ChatList />}/>} />
       </Routes>
       {!noHeaderPaths.includes(location.pathname) && <Footer />}
     </div>

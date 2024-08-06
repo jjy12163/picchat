@@ -1,7 +1,9 @@
-from flask import Blueprint, redirect, request, session, url_for, jsonify, current_app
+from flask import Blueprint, redirect, request, url_for, jsonify, current_app, make_response
 from oauthlib.oauth2 import WebApplicationClient
-import requests, os, json
+import requests, os, json, jwt
+from datetime import datetime, timedelta, timezone
 from ..models import db, User
+from ..utils import token_required
 
 bp = Blueprint('auth_routes', __name__, url_prefix='/api/auth')
 
@@ -63,14 +65,26 @@ def google_callback():
             db.session.add(user)
             db.session.commit()
 
-        session['user'] = {
+        # JWT 토큰 생성 
+        token = jwt.encode({
+            'sub': user.id,
+            'name': user.username,
             'email': user.email,
-            'username': user.username,
-            'profile_image': user.profile_image,
-        }
+            'exp': datetime.now(timezone.utc) + timedelta(hours=1)
+        }, current_app.config['SECRET_KEY'], algorithm='HS256')
 
-        return redirect('/main')
+        response = make_response(redirect('/main'))
+        response.set_cookie('token', token, httponly=True, secure=True, samesite='Strict')
+        return response
 
     except Exception as e:
         current_app.logger.error(f"google_callback() 오류: {str(e)}")
+        
         return jsonify({'error': '인증 실패'}), 500
+
+@bp.route('/logout', methods=['POST'])
+@token_required
+def logout():
+    response = make_response(jsonify({'message': '로그아웃 성공'}), 200) 
+    response.set_cookie('token', '', expires=0)
+    return response

@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IoMdChatboxes } from "react-icons/io";
 import styles from './StartPage.module.css';
 
 const StartPage = () => {
     const navigate = useNavigate();
-    const [error, setError] = useState(null);
 
     const buttonOnClick = async() => {
         try {
@@ -26,7 +25,6 @@ const StartPage = () => {
                 navigate('/login');
             }
         } catch (error) {
-            setError(error);
             alert(`Error: ${error.message}`);
         }
     };

@@ -1,11 +1,18 @@
 from flask import Blueprint, request, jsonify, current_app
 from werkzeug.utils import secure_filename
 from ..models import FaceImage, db
+from io import BytesIO
+import numpy as np
+import cv2
+from deepface import DeepFace
+from ..utils import token_required
 
 bp = Blueprint('face_image_routes', __name__, url_prefix='/api/face_image')
 
-@bp.route('/upload', methods=['POST'])
-def upload_image():
+@bp.route('/upload_and_analyze', methods=['POST'])
+@token_required
+def upload_and_analyze():
+    current_user = request.current_user
     if 'image' not in request.files:
         current_app.logger.error('No file part in the request')
         return jsonify({'error': 'No file part'}), 400
@@ -15,27 +22,31 @@ def upload_image():
         current_app.logger.error('No selected file')
         return jsonify({'error': 'No selected file'}), 400
 
-    if file:
+    try: 
         filename = secure_filename(file.filename)
-        user_id = request.form['user_id']
+        image_data = file.read()
         face_image = FaceImage(
-            image=file.read(),
-            filename=filename,
-            user_id=user_id
+            image = image_data,
+            filename = filename,
+            user_id = current_user['sub']
         )
         db.session.add(face_image)
         db.session.commit()
-        current_app.logger.info(f'Image uploaded successfully: {filename}')
-        return jsonify({'message': 'Image uploaded successfully'}), 201
+        current_app.logger.info(f'이미지 업로드 성공: {filename}')
+    
+        # 이미지 업로드 성공 후 DeepFace로 감정 분석 진행 
+        image_file = BytesIO(image_data)
+        img_array = np.frombuffer(image_file.read(), np.uint8)
+        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
 
-@bp.route('/<int:image_id>', methods=['GET'])
-def get_image(image_id):
-    image = FaceImage.query.get(image_id)
-    if image:
-        return jsonify({
-            'id': image.id,
-            'filename': image.filename,
-            'uploaded_at': image.uploaded_at,
-            'user_id': image.user_id
-        })
-    return jsonify({'error': 'Image not found'}), 404
+        if img is None:
+            current_app.logger.error("OpenCV failed to decode the image.")
+            return jsonify({'error': 'Failed to decode image'}), 500
+        
+        results = DeepFace.analyze(img, actions=['emotion'], enforce_detection=False)
+        emotions = results[0]['emotion']
+        return jsonify({'emotions': emotions})
+
+    except Exception as e:
+        current_app.logger.error(f"Exception: {str(e)}")
+        return jsonify({'error': str(e)}), 500

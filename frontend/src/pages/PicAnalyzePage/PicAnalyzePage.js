@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { RiRobot2Fill } from "react-icons/ri";
+import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './PicAnalyzePage.module.css';
-import uploadedImage from '../../assets/images/profile.jpg';
 
 const PicAnalyzePage = () => {
-  const [loading, setLoading] = useState(true);
-  const [selectedKeyword, setSelectedKeyword] = useState(null);
+  const location = useLocation();
+  const {emotions, imageUrl} = location.state || {};
   const navigate = useNavigate();
 
   const keywordMap = {
@@ -18,58 +16,17 @@ const PicAnalyzePage = () => {
     surprise: '놀람',
     neutral: '중립'
   };
+  
+  const filteredEmotions = { ...emotions };
+  console.log('감정 분석 결과:', emotions);
 
-  useEffect(() => {
-    fetch('/analyze_emotion', { 
-      method: 'POST', 
-      headers: { 'Content-Type': 'application/json' },
-      // body: JSON.stringify({ image_path: uploadedImagePath }) 
-    })
-      .then(() => {
-        // 분석 완료시 키워드 추출 요청 
-        return fetch('/get_words');
-      })
-      .then(response => response.json())
-      .then(data => {
-        setSelectedKeyword(data.keyword);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error during the analysis process:', error);
-        setLoading(false);
-      });
-  }, []);
+  // neutral을 제외한 가장 높은 감정 찾기
+  delete filteredEmotions.neutral;
+  const dominantEmotion = Object.keys(filteredEmotions).reduce((a, b) => filteredEmotions[a] > filteredEmotions[b] ? a : b);
 
-    const handleStartChat = () => {
-      // 새로운 창 또는 탭에서 채팅 서비스 열기 
-      const chatbotUrl = 'http://localhost:3000/chatbot';
-      const chatUrl = `${chatbotUrl}?feeling=${encodeURIComponent(keywords)}`;
-      window.open(chatUrl, '_blank');
 
-    {/*
-      // 상담 시작하기 선택한 경우, 챗봇에게 키워드 전달 요청
-      
-      fetch('http://localhost:3000/chatbot', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ keywords }),
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.message === 'Data successfully sent to chatbot') {
-         
-        // 챗봇 서비스로부터 받은 응답을 사용하여 채팅 화면으로 이동
-        navigate('/chat'); //, { state: { chatbotResponse: data.response } });
-      } else {
-        console.error('Error starting chat:', data.error);
-      }
-    })
-    .catch(error => {
-      console.error('Error starting chat:', error);
-    });
-    */}
+  const handleStartChat = () => {
+      navigate(`/chat?feeling=${encodeURIComponent(dominantEmotion)}`)
   };
   
   const handleDoLater = () => {
@@ -78,20 +35,11 @@ const PicAnalyzePage = () => {
 
   return (
     <div className={styles.root}>
-      {loading ? (
-        <div className={styles.loadingContainer}>
-          <RiRobot2Fill 
-            className={styles.icon}
-            size={120}
-          />
-          <div className={styles.text}>사진을 분석 중입니다...</div>
-        </div>
-      ) : (
         <div className={styles.container}>
           <div className={styles.topContainer}>
             <div className={styles.imageContainer}>
               <img
-                src={uploadedImage}
+                src={imageUrl}
                 className={styles.image}
                 alt='uploaded'
               />
@@ -99,12 +47,12 @@ const PicAnalyzePage = () => {
             <div className={styles.text}>상담을 시작하시겠습니까?</div>
           </div>
           <div className={styles.tagContainer}>
-            {Object.keys(keywordMap).map((keyword) => (
+            {Object.keys(emotions).map((emotion) => (
               <span 
-                key={keyword} 
-                className={keyword === selectedKeyword ? styles.tagselected : styles.tagdefault}
+                key={emotion} 
+                className={emotion === dominantEmotion ? styles.tagselected : styles.tagdefault}
               >
-                {keywordMap[keyword]}
+                {keywordMap[emotion]}
               </span>
             ))}
           </div>
@@ -113,7 +61,6 @@ const PicAnalyzePage = () => {
             <button className={styles.button} onClick={handleDoLater}>다음에 하기</button>
           </div>
         </div>
-      )}
     </div>
   );
 }
