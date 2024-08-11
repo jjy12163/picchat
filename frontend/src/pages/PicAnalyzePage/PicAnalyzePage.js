@@ -23,10 +23,10 @@ const PicAnalyzePage = () => {
   // neutral을 제외한 가장 높은 감정 찾기
   delete filteredEmotions.neutral;
   const dominantEmotion = Object.keys(filteredEmotions).reduce((a, b) => filteredEmotions[a] > filteredEmotions[b] ? a : b);
-
+  const dominantEmotionKorean = keywordMap[dominantEmotion] + '심리상담해줘';
 
   const handleStartChat = () => {
-      navigate(`/chat?feeling=${encodeURIComponent(dominantEmotion)}`)
+      navigate('/chat', { state: { dominantEmotionKorean } })
   };
   
   const handleDoLater = () => {
@@ -57,8 +57,8 @@ const PicAnalyzePage = () => {
             ))}
           </div>
           <div className={styles.buttonContainer}>
-            <button className={styles.button} onClick={handleStartChat}>상담 시작하기</button>
             <button className={styles.button} onClick={handleDoLater}>다음에 하기</button>
+            <button className={styles.button} onClick={handleStartChat}>상담 시작하기</button>
           </div>
         </div>
     </div>
