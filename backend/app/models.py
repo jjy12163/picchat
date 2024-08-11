@@ -24,12 +24,12 @@ class FaceImage(db.Model):
 class Chatbot(db.Model): 
     __tablename__ = 'chatbot'
     id = db.Column(db.Integer, primary_key=True)
-    dialog_url = db.Column(MEDIUMTEXT, nullable=False)
+    dialog = db.Column(MEDIUMTEXT, nullable=False)
     summary = db.Column(MEDIUMTEXT, nullable=True)
     feedback = db.Column(ENUM('good', 'bad', name='feedback_enum'), nullable=True)
-    faceimage_id = db.Column(db.Integer, db.ForeignKey('faceimage.id'), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.idUser'), nullable=False)
     date = db.Column(db.DateTime, server_default=func.now())
+    faceimage_id = db.Column(db.Integer, db.ForeignKey('faceimage.id'), nullable=False)
     faceimage = db.relationship('FaceImage', back_populates='chatbots')
     user = db.relationship('User', backref=db.backref('chatbots', cascade='all, delete-orphan'))
 
