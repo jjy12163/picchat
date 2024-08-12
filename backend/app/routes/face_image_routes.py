@@ -32,7 +32,6 @@ def upload_and_analyze():
         )
         db.session.add(face_image)
         db.session.commit()
-        current_app.logger.info(f'이미지 업로드 성공: {filename}')
     
         # 이미지 업로드 성공 후 DeepFace로 감정 분석 진행 
         image_file = BytesIO(image_data)
