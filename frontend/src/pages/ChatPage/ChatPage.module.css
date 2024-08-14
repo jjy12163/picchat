@@ -1,11 +1,12 @@
 .root {
-    height: 100%;    
+    height: 100vh;
 }
 
 .headerContainer {
     border-bottom: 1.5px solid #ddd;
     display: flex;
     padding: 5px 0px;
+    flex-shrink: 0;
 }
 
 .chattyImage {
@@ -36,30 +37,49 @@
     background-color: white;
     color: rgba(130, 130, 130, 1);
     margin-left: auto;
-    margin-right: 25px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(224, 224, 224, 1);
+    border-color: 2.5px solid transparent;
+    border-radius: 10px;
+    background-clip: padding-box;
 }
 
 .chatContainer {
-    margin: 15px;
-    font-size: 14px;
-    display: flex;
-    flex-direction: column;
-    max-height: 200px;
+    margin: 15px 5px 15px 15px;
+    font-size: 12px;
+    max-height: 77vh;
+    overflow-y: auto;
 }
 
 .dateAndTime {
     color: rgba(130, 130, 130, 1);
     font-size: 11px;
-    margin: 0 auto;
+    margin: 5px auto 25px auto;
+    text-align: center;
 }
 
 .chattyTextContainer {
-    max-width: fit-content;
+    max-width: 50vw;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    width: fit-content;
 }
 
 .userTextContainer {
-    max-width: fit-content;
+    max-width: 45vw;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    width: fit-content;
     margin-left: auto;
+    margin-right: 5px;
 }
 
 .userText {
@@ -69,6 +89,7 @@
     color: white;
     border-radius: 17px 17px 1px 17px; 
     background-color: black;
+    line-height: 1.7;
 }
 
 .chattyText {
@@ -78,8 +99,8 @@
     color: black;
     border-radius: 17px 17px 17px 1px; 
     background-color: rgba(224, 224, 224, 1);
+    line-height: 1.7;
 }
-
 
 .footer {
     display: flex;
@@ -94,7 +115,7 @@
     border: none;
     margin-left: 10px;
     width: 95%;
-    resize:vertical;
+    resize: vertical;
 }
 
 .inputText:focus {
@@ -107,13 +128,9 @@
     gap: 10px;
     padding: 3px;
     margin-left: auto;
-    margin-right: 10px;
+    margin-right: 8px;
     margin-top: 2px;
 }
-
-.imageInput {
-    display: none;
-  }
 
 .exitButton {
     border: none;
@@ -121,5 +138,4 @@
     transform: rotate(45deg);
     margin-left: auto;
     margin-right: 10px;
-
 }
