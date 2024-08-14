@@ -38,6 +38,7 @@ def update_nickname():
         if new_nickname: 
             user.nickname = new_nickname
             db.session.commit()
+            return jsonify(''),200
         else:
             return jsonify({'error': '닉네임을 입력해주세요'}), 400
     except Exception as e:
@@ -49,7 +50,7 @@ def update_nickname():
 def delete_account(): 
     try:
         current_user = request.current_user
-        user = User.query.filter_by(email=current_user).first()
+        user = User.query.filter_by(email = current_user['email']).first()
         if user:            
             FaceImage.query.filter_by(user_id=user.id).delete()
             
@@ -57,7 +58,7 @@ def delete_account():
             db.session.commit()
             response = jsonify({'message': '회원 탈퇴 성공'})
             response.set_cookie('token', '', expires=0)
-            return response
+            return response,200
         else: 
             return jsonify({'error': '사용자 찾을 수 없음'}),404
     except Exception as e:

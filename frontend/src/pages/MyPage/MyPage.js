@@ -56,16 +56,16 @@ const MyPage = () => {
         });
 
         if (response.ok) {
-          console.log('닉네임 업데이트 성공');
+          alert('닉네임 변경 성공!');
           setUserData((prevData) => ({
             ...prevData,
             nickname: newNickname,
           }));
         } else {
-          console.error('닉네임 업데이트 실패:', response.statusText);
+          console.error('닉네임 변경 실패:', response.statusText);
         }
       } catch (error) {
-        console.error('닉네임 업데이트 중 에러:', error);
+        console.error('닉네임 변경 중 에러:', error);
       }
     }
   };
@@ -78,13 +78,13 @@ const MyPage = () => {
       });
       
       if (response.ok) {
-        console.log('탈퇴 완료');
-        navigate('/login');
+        alert('탈퇴 완료');
+        navigate('/start');
       } else {
-        console.log('탈퇴 실패:', response.statusText);
+        alert('탈퇴 실패');
       }
     } catch (error) {
-      console.error('탈퇴 오류..:', error);
+      alert('탈퇴 실패');
     }
   };
 
