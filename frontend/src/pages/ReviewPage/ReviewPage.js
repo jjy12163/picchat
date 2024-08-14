@@ -13,7 +13,7 @@ const ReviewPage = () => {
   };
 
   const handleFeedback = (feedback) => {
-    axios.post('/chat/evaluate', { feedback })
+    axios.post('http://localhost:5000/api/chat/review', { feedback })
       .then(response => {
         console.log('Feedback sent successfully:', response.data);
         navigate('/start');
@@ -31,13 +31,13 @@ const ReviewPage = () => {
           src={ThumbsUp}
           alt='thumbsUp'
           className={styles.thumbsUp}
-          onClick={() => handleFeedback('좋아요')}
+          onClick={() => handleFeedback('good')}
         />
         <img
           src={ThumbsDown}
           alt='thumbsDown'
           className={styles.thumbsDown}
-          onClick={() => handleFeedback('싫어요')}
+          onClick={() => handleFeedback('bad')}
         />
       </div>
       <button className={styles.button} onClick={handleSkip}>건너뛰기</button>
