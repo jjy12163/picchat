@@ -23,7 +23,7 @@ const PicAnalyzePage = () => {
   // neutral을 제외한 가장 높은 감정 찾기
   delete filteredEmotions.neutral;
   const dominantEmotion = Object.keys(filteredEmotions).reduce((a, b) => filteredEmotions[a] > filteredEmotions[b] ? a : b);
-  const dominantEmotionKorean = keywordMap[dominantEmotion] + '심리상담해줘';
+  const dominantEmotionKorean = '내 감정에 맞춰 심리 상담을 진행해줘. 내 감정은 지금 ' + keywordMap[dominantEmotion] + '야.' ;
 
   const handleStartChat = () => {
       navigate('/chat', { state: { dominantEmotionKorean } })
