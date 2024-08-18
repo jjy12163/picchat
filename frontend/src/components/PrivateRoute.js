@@ -27,7 +27,7 @@ const PrivateRoute = ({ element }) => {
   }, []);
 
   if (isAuthenticated === null) {
-    return <div>Loading...</div>; 
+    return <div></div>; 
   }
 
   return isAuthenticated ? element : <Navigate to="/login" />;

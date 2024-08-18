@@ -1,15 +1,37 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
 import ChattyImage from '../../assets/images/chatty.png';
 import styles from './ChatPage.module.css';
 import { FiPlus } from "react-icons/fi";
 
 const ChatHistory = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [chatHistory, setChatHistory] = useState([]);
+  const [dateTime, setDateTime] = useState('');
+  const chatId = location.state?.chatId || '';
 
   const handleIconClick = () => {
     navigate('/list');
   };
+
+  useEffect(() => {
+    const fetchChatHistory = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/chat/list/${chatId}`);
+        const chatData = response.data;
+        setChatHistory(chatData.dialog);
+        setDateTime(chatData.date);
+      } catch (error) {
+        console.error('대화 내용을 가져올 수 없습니다:', error);
+      }
+    };
+
+    if (chatId) {
+      fetchChatHistory();
+    }
+  }, [chatId]);
 
   return (
     <div className={styles.root}>
@@ -29,13 +51,17 @@ const ChatHistory = () => {
       </div>
 
       <div className={styles.chatContainer}>
-        <div className={styles.dateAndTime}>Nov 30, 2023, 9:41 AM</div>
-        <div className={styles.chattyTextContainer}>
-          <div className={styles.chattyText}>How does it work?</div>
-        </div>
-        <div className={styles.userTextContainer}>
-          <div className={styles.userText}>Booom!</div>
-        </div>
+        <div className={styles.dateAndTime}>{dateTime}</div>
+        {chatHistory.map((line, index) => (
+          <div
+            key={index}
+            className={line.startsWith('Chatty:') ? styles.chattyTextContainer : styles.userTextContainer}
+          >
+            <div className={line.startsWith('Chatty:','') ? styles.chattyText : styles.userText}>
+              {line.replace('User:', '').replace('Chatty:', '')}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
