@@ -121,7 +121,7 @@ const MyPage = () => {
       <div className={styles.buttonContainer}>
         <button 
           className={styles.historyButton}
-          onClick={() => navigate('/history')}
+          onClick={() => navigate('/list')}
         > 상담 기록 보기 </button>
         <button 
           className={styles.pwButton}

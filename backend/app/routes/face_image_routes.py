@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, current_app
+from flask import Blueprint, request, jsonify, current_app, send_file
 from werkzeug.utils import secure_filename
 from ..models import FaceImage, db
 from io import BytesIO
@@ -45,6 +45,28 @@ def upload_and_analyze():
         results = DeepFace.analyze(img, actions=['emotion'], enforce_detection=False)
         emotions = results[0]['emotion']
         return jsonify({'emotions': emotions})
+
+    except Exception as e:
+        current_app.logger.error(f"Exception: {str(e)}")
+        return jsonify({'error': str(e)}), 500
+
+@bp.route('/download/<int:image_id>', methods=['GET'])
+@token_required
+def download_image(image_id):
+    try:
+        # 이미지 검색
+        face_image = FaceImage.query.filter_by(id=image_id, user_id=request.current_user['sub']).first()
+
+        if not face_image:
+            return jsonify({'error': '이미지 없음'}), 404
+
+        # 이미지 클라이언트로 전송
+        return send_file(
+            BytesIO(face_image.image),
+            mimetype='image/jpeg',
+            as_attachment=True,
+            download_name=face_image.filename
+        )
 
     except Exception as e:
         current_app.logger.error(f"Exception: {str(e)}")
