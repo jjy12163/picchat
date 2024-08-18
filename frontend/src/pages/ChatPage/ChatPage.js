@@ -13,6 +13,7 @@ const ChatPage = () => {
   const [message, setMessage] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
   const [dateTime, setDateTime] = useState('');
+  const [initialMessageSent, setInitialMessageSent] = useState(false);
   const { dominantEmotionKorean } = location.state || {};
 
   const chatContainerRef = useRef(null); 
@@ -30,7 +31,8 @@ const ChatPage = () => {
   }, [chatHistory]); 
 
   useEffect(() => {
-    if (!dominantEmotionKorean) return;
+    // 초기 응답은 1번만 요청할 수 있도록 제한 
+    if (!dominantEmotionKorean || initialMessageSent) return;
 
     // 초기 응답 생성 
     const fetchInitialResponse = async () => {
@@ -38,13 +40,14 @@ const ChatPage = () => {
         const response = await axios.post('http://localhost:5000/api/chat', { message: dominantEmotionKorean });
         const gptResponse = response.data.response;
         setChatHistory([{ sender: 'gpt', text: gptResponse }]); 
+        setInitialMessageSent(true);
       } catch (error) {
         console.error('초기 응답을 받을 수 없습니다:', error);
       }
     };
 
     fetchInitialResponse();
-  }, [dominantEmotionKorean]);
+  }, [dominantEmotionKorean, initialMessageSent]);
 
   const handleFinish = async () => {
     try {

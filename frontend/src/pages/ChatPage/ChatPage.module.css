@@ -1,5 +1,6 @@
 .root {
     height: 100vh;
+    overflow-y: auto;
 }
 
 .headerContainer {
@@ -39,17 +40,6 @@
     margin-left: auto;
     margin-right: 10px;
     font-size: 14px;
-}
-
-::-webkit-scrollbar {
-    width: 3px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgba(224, 224, 224, 1);
-    border-color: 2.5px solid transparent;
-    border-radius: 10px;
-    background-clip: padding-box;
 }
 
 .chatContainer {
