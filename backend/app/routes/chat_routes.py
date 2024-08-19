@@ -24,11 +24,11 @@ def summarize_text(dialog, user_id):
             {"role": "system", "content": (
                 f"다음 대화를 요약하세요. 아래 형식을 따르세요:\n"
                 f"감정: {user_nickname}님의 감정을 딱 한 단어로 적어주세요\n"
-                f"Chatty가 {user_nickname}님에게 위로를 건넨 방식이나 말을 한 문장 이내로 설명해주세요"
+                f"한 문장 이내로 Chatty와 {user_nickname}님의 대화를 묘사해주세요."
             )},
             {"role": "user", "content": dialog}
         ],
-        temperature=0.1,
+        temperature=0.2,
         max_tokens=200
     )
     summary = response.choices[0].message.content.strip()
