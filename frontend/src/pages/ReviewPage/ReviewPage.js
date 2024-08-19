@@ -9,14 +9,14 @@ const ReviewPage = () => {
   const navigate = useNavigate();
 
   const handleSkip = () => {
-    navigate('/start');
+    navigate('/main');
   };
 
   const handleFeedback = (feedback) => {
     axios.post('http://localhost:5000/api/chat/review', { feedback })
       .then(response => {
         console.log('Feedback sent successfully:', response.data);
-        navigate('/start');
+        navigate('/main');
       })
       .catch(error => {
         console.error('Error sending feedback:', error);

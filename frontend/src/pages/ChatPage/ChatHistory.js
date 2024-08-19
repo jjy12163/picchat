@@ -55,10 +55,10 @@ const ChatHistory = () => {
         {chatHistory.map((line, index) => (
           <div
             key={index}
-            className={line.startsWith('Chatty:') ? styles.chattyTextContainer : styles.userTextContainer}
+            className={line.startsWith('User:') ? styles.userTextContainer : styles.chattyTextContainer}
           >
-            <div className={line.startsWith('Chatty:','') ? styles.chattyText : styles.userText}>
-              {line.replace('User:', '').replace('Chatty:', '')}
+            <div className={line.startsWith('User:','') ? styles.userText : styles.chattyText}>
+              {line.replace('Chatty:', '').replace('User:', '')}
             </div>
           </div>
         ))}
