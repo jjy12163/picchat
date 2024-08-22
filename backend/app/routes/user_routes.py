@@ -19,7 +19,7 @@ def get_user():
                 'profile_image': user.profile_image
             })
         else:
-            return jsonify({'error': 'User not found'}), 404
+            return jsonify({'error': 'User not found'}), 401
     except Exception as e:
         current_app.logger.error(f"사용자 조회 오류: {e}")
         return jsonify({'error': '사용자 조회 중 오류 발생'}), 500
