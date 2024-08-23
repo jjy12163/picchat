@@ -140,15 +140,23 @@ def get_chat_history():
         user_id = request.current_user['sub']
         chats = Chatbot.query.filter_by(user_id=user_id).order_by(Chatbot.date.desc()).all()
         
-        chat_list = [
-            {
+        chat_list = []
+        
+        for chat in chats:
+            image_url = None
+            if chat.faceimage_id:
+                # FaceImage에서 S3 URL을 가져옴
+                face_image = FaceImage.query.filter_by(id=chat.faceimage_id).first()
+                if face_image:
+                    image_url = f"https://{os.getenv('S3_BUCKET_NAME')}.s3.{os.getenv('S3_REGION')}.amazonaws.com/{face_image.filename}"
+
+            chat_list.append({
                 "id": chat.id,
                 "summary": chat.summary,
                 "date": chat.date.strftime('%Y-%m-%d %H:%M'),
-                "image": f'http://localhost:5000/api/face_image/download/{chat.faceimage_id}' if chat.faceimage_id else None
-            }
-            for chat in chats
-        ]
+                "image": image_url
+            })
+
         
         return jsonify(chat_list), 200
 

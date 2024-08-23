@@ -13,3 +13,8 @@ class Config:
     GOOGLE_DISCOVERY_URL = os.getenv('GOOGLE_DISCOVERY_URL')
     SESSION_TYPE = os.getenv('SESSION_TYPE', 'filesystem')
     SESSION_PERMANENT = False
+    S3_BUCKET_NAME = os.getenv('S3_BUCKET_NAME')
+    S3_ACCESS_KEY = os.getenv('S3_ACCESS_KEY')
+    S3_SECRET_KEY = os.getenv('S3_SECRET_KEY')
+    S3_REGION = os.getenv('S3_REGION')
+    OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
