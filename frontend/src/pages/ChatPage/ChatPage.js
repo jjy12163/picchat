@@ -37,7 +37,7 @@ const ChatPage = () => {
     // 초기 응답 생성 
     const fetchInitialResponse = async () => {
       try {
-        const response = await axios.post('http://localhost:5000/api/chat', { message: dominantEmotionKorean });
+        const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/chat`, { message: dominantEmotionKorean });
         const gptResponse = response.data.response;
         setChatHistory([{ sender: 'gpt', text: gptResponse }]); 
         setInitialMessageSent(true);
@@ -54,7 +54,7 @@ const ChatPage = () => {
       // `chatHistory`를 전송할 수 있도록 변환
       const dialog = chatHistory.map(chat => `${chat.sender === 'user' ? 'User: ' : 'Chatty: '}${chat.text}`).join('\n');
       
-      await axios.post('http://localhost:5000/api/chat/save', { dialog });
+      await axios.post(`${process.env.REACT_APP_API_BASE_URL}/chat/save`, { dialog });
       navigate('/review');
     } catch (error) {
       console.error('채팅 기록이 저장되지 않았습니다', error);
@@ -68,7 +68,7 @@ const ChatPage = () => {
     setMessage('');
 
     try {
-      const response = await axios.post('http://localhost:5000/api/chat', { message });
+      const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/chat`, { message });
       const gptResponse = response.data.response;
       setChatHistory(prevHistory => [...prevHistory, { sender: 'gpt', text: gptResponse }]);
     } catch (error) {

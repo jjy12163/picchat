@@ -7,7 +7,7 @@ const PrivateRoute = ({ element }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/user/', {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/user/`, {
           method: 'GET',
           credentials: 'include',
         });

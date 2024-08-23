@@ -8,7 +8,7 @@ const StartPage = () => {
 
     const buttonOnClick = async() => {
         try {
-            const response = await fetch('http://localhost:5000/api/user/', {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/user/`, {
                 credentials: 'include'
             });
             if (response.status === 401) {

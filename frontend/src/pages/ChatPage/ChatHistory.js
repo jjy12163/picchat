@@ -19,7 +19,7 @@ const ChatHistory = () => {
   useEffect(() => {
     const fetchChatHistory = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/chat/list/${chatId}`);
+        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/chat/list/${chatId}`);
         const chatData = response.data;
         setChatHistory(chatData.dialog);
         setDateTime(chatData.date);

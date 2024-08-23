@@ -8,7 +8,7 @@ const LoginPage = () => {
 
   // 구글 로그인 페이지 이동
   const handleLogin = () => {
-    window.location.href = 'http://localhost:5000/api/auth/google';
+    window.location.href = `${process.env.REACT_APP_API_BASE_URL}/auth/google`;
   };
   
   const handleLogoClick = () => {

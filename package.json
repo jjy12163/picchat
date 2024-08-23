@@ -1,0 +1,9 @@
+{
+  "name": "picchat",
+  "version": "0.1.0",
+  "homepage": "https://jjy12163.github.io/picchat/",
+  "scripts": {
+    "predeploy": "npm run build --prefix frontend",
+    "deploy": "gh-pages -d frontend/build"
+  }
+}

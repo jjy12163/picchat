@@ -32,7 +32,7 @@ const MainPage = () => {
       setLoading(true);
 
       try {
-        const response = await fetch('http://localhost:5000/api/face_image/upload_and_analyze', { 
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/face_image/upload_and_analyze`, { 
           method: 'POST',
           body: formData,
         });

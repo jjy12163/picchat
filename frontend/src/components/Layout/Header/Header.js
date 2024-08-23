@@ -11,7 +11,7 @@ const Header = () => {
  useEffect(() => {
   const fetchUserData = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/user/', {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/user/`, {
         credentials: 'include'
       });
       if (!response.ok) {
@@ -34,7 +34,7 @@ const Header = () => {
 }, []);
 
 const handleLogout = () => {
-  fetch('http://localhost:5000/api/auth/logout', {
+  fetch(`${process.env.REACT_APP_API_BASE_URL}/auth/logout`, {
     method: 'POST',
     credentials: 'include'
   })

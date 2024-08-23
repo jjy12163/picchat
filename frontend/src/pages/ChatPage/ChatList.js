@@ -15,7 +15,7 @@ const ChatList = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/chat/list')
+    axios.get(`${process.env.REACT_APP_API_BASE_URL}/chat/list`)
       .then(response => {
         const newData = response.data.map(issue => {
           const [date, time] = issue.date.split(' ');

@@ -15,7 +15,7 @@ const MyPage = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/user/', {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/user/`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ const MyPage = () => {
   const onSaveChanges = async () => {
     if (newNickname !== userData.nickname) {
       try {
-        const response = await fetch('http://localhost:5000/api/user/update_nickname', {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/user/update_nickname`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ const MyPage = () => {
 
   const onDeleteAccount = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/user/delete_account', {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/user/delete_account`, {
         method: 'DELETE',
         credentials: 'include'
       });
