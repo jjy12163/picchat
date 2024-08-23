@@ -12,10 +12,11 @@ import ChatHistory from './pages/ChatPage/ChatHistory';
 import StartPage from './pages/StartPage/StartPage';
 import ChatList from './pages/ChatPage/ChatList';
 import PrivateRoute from './components/PrivateRoute';
+import PrivacyPage from './pages/PrivacyPage/PrivacyPage';
 
 function App() {
   const location = useLocation();
-  const noHeaderPaths = ['/chat', '/history', '/login', '/start'];
+  const noHeaderPaths = ['/chat', '/history', '/login', '/start', '/privacy'];
 
   return (
     <div>
@@ -31,6 +32,7 @@ function App() {
         <Route path="/history" element={<PrivateRoute element={<ChatHistory />}/>} />
         <Route path="/start" element={<StartPage />} />
         <Route path="/list" element={<PrivateRoute element={<ChatList />}/>} />
+        <Route path="/privacy" element={<PrivacyPage />} />
       </Routes>
       {!noHeaderPaths.includes(location.pathname) && <Footer />}
     </div>
