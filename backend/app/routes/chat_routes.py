@@ -148,8 +148,8 @@ def get_chat_history():
                 # FaceImage에서 S3 URL을 가져옴
                 face_image = FaceImage.query.filter_by(id=chat.faceimage_id).first()
                 if face_image:
-                    image_url = f"https://{os.getenv('S3_BUCKET_NAME')}.s3.{os.getenv('S3_REGION')}.amazonaws.com/{face_image.filename}"
-
+                    image_url = face_image.image_url
+                    
             chat_list.append({
                 "id": chat.id,
                 "summary": chat.summary,

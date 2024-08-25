@@ -14,10 +14,10 @@ class User(db.Model):
 class FaceImage(db.Model):
     __tablename__ = 'faceimage'
     id = db.Column(db.Integer, primary_key=True)
-    image = db.Column(MEDIUMBLOB, nullable=True)
     filename = db.Column(db.String(255), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.idUser', ondelete='CASCADE'), nullable=False)
     uploaded_at = db.Column(db.DateTime, server_default=func.now())
+    image_url = db.Column(db.String(255), nullable=True)
     user = db.relationship('User', back_populates='faceimages')
     chatbots = db.relationship('Chatbot', back_populates='faceimage', cascade='all, delete-orphan')
 
