@@ -44,7 +44,7 @@ const ChatList = () => {
   };
 
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:5000/api/chat/delete/${id}`)
+    axios.delete(`${process.env.REACT_APP_API_BASE_URL}/chat/delete/${id}`)
       .then(response => {
         const updatedIssues = issues.filter(issue => issue.id !== id);
         setIssues(updatedIssues);
