@@ -1,20 +1,34 @@
 # Pic Chat
 
 ## 목차
-1. [프로젝트 개요](#프로젝트-개요)
-   - [제작 이유](#제작-이유)
-   - [개발 기간](#개발-기간)
-   - [서비스 목표](#서비스-목표)
-   - [주요 기능](#주요-기능)
+1. [웹사이트 살펴보기](#사이트-살펴보기)
+   - [링크](#링크)
    - [시연 영상](#시연-영상)
-2. [기술 스택](#기술-스택)
-3. [플로우차트](#플로우차트)
-4. [ERD](#데이터베이스)
+2. [프로젝트 개요](#프로젝트-개요)
+   - [제작 이유](#제작-이유)
+   - [서비스 목표](#서비스-목표)
+   - [개발 기간](#개발-기간)
+   - [주요 기능](#주요-기능)
+3. [기술 스택](#기술-스택)
+4. [아키텍처](#아키텍처)
+   - [서비스 아키텍처](#서비스-아키텍처)
+   - [플로우차트](#플로우차트)
+   - [ERD](#데이터베이스)
 5. [기능 상세 설명](#기능-상세-설명)
 6. [팀원 소개](#팀원-소개)
+7. [출처](#표정-분석-이미지-출처)
 
+<br>
 
-## 프로젝트 개요
+## 사이트 살펴보기
+### 링크
+[https://picchat.site](https://picchat.site)
+  
+### 시연 영상
+[Youtube](https://youtu.be/3Vgwy5BEZkw)
+<br><br><br>
+
+## 프로젝트 개요 
 ### 제작 이유
 - 현대 사회에서 사람들이 받는 스트레스를 줄이기 위한 개인 맞춤형 서비스 중 접근성과 편리성을 고려하여 얼굴 인식 기술과 인공지능을 활용한 심리 상담 서비스를 제작하기로 하였습니다.
 
@@ -28,13 +42,10 @@
 - **사용자의 사진 분석 후 감정 키워드 도출**
 - **해당 감정 키워드를 바탕으로 심리 상담 진행** (`채티` 챗봇 사용)
 
-### 시연 영상
-- [Demo](https://youtu.be/3Vgwy5BEZkw)
-
 <br>
 
 ## 기술 스택
-
+![AWS](https://img.shields.io/badge/AWS-FF6F00?style=flat&logo=amazonaws&logoColor=white)
 ![React](https://img.shields.io/badge/React-18.3.1-61DAFB?style=flat&logo=react&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=flat&logo=javascript&logoColor=black)
 ![Node.js](https://img.shields.io/badge/Node.js-20.16.0-339933?style=flat&logo=node.js&logoColor=white)
@@ -58,78 +69,92 @@
 
 <br>
 
-## 플로우차트
-<img src="https://github.com/user-attachments/assets/a5a30771-1473-48fc-897e-205eeb84a7c4" width="800"/>
-
-
-## 데이터베이스
-<img src="https://github.com/user-attachments/assets/29683d40-ed83-4842-ad7e-9759cbdd5b6e" alt="ERD" width="500"/>
+## 아키텍처 
+### - 서비스 아키텍처 
+<img src="https://github.com/user-attachments/assets/26e674f7-72c3-40e5-8047-e2d8e45cd950" width="650">
 
 <br><br>
 
+### - 플로우차트
+<img src="https://github.com/user-attachments/assets/a5a30771-1473-48fc-897e-205eeb84a7c4" width="800"/>
+
+<br><br>
+
+### - 데이터베이스
+<img src="https://github.com/user-attachments/assets/29683d40-ed83-4842-ad7e-9759cbdd5b6e" alt="ERD" width="500"/>
+
+<br><br><br>
+
 ## 기능 상세 설명 
-### 로그인 및 회원가입 
+### 1. 로그인 및 회원가입 
 | <img src="https://github.com/user-attachments/assets/4b0e04d1-a3ea-4a73-afe8-a4a839bc1ee8" alt="loginpage" width="500"/> | 
 |:---------------------------------:|
 | 구글 로그인을 통한 로그인 및 회원가입|                                  
 
+<br>
 
-### 사진 업로드 및 분석 
+### 2. 사진 업로드 및 분석 
 | <img src="https://github.com/user-attachments/assets/5a9c0c28-2e86-4ba0-a8d4-64e6afd8c1db" alt="uploadpage" width="500" /> | <img src="https://github.com/user-attachments/assets/fe8f0377-05d1-4028-8de3-3b0ae5fdf09c" alt="analyzing" width="500"/>
 |:---------------------------------:|:------------------:|
 | 상담을 진행하기 위해 <br> 사용자의 감정이 드러나는 사진을 업로드 | 업로드한 사진에서 감정 키워드 추출을 위한 분석 진행 |                                 
 
+<br>
 
-### 감정 키워드 추출
+### 3. 감정 키워드 추출
 | <img src="https://github.com/user-attachments/assets/db395ab5-aee7-4125-af36-f4131616607a" alt="resultpage" width="500"/> | 
 |:---------------------------------:|
 | 표정분석모델로부터 추출한 감정 키워드 출력|       
 
+<br>
 
-### 챗봇과의 심리상담
+### 4. 챗봇과의 심리상담
 | <img src="https://github.com/user-attachments/assets/103c49fd-53ed-4904-ac5f-6355b29e5645" alt="chatpage" width="500"/> | 
 |:---------------------------------:|
 | 감정 키워드를 기반으로 심리 상담 진행|  
 
-### 만족도 조사 
+<br>
+
+### 5. 만족도 조사 
 | <img src="https://github.com/user-attachments/assets/2a2fbb1c-9793-473e-adbc-4cb2b2f0c862" alt="feedback" width="500"/> | 
 |:---------------------------------:|
 | 상담 종료 후 만족도 조사 진행 <br> (good/bad/건너뛰기 중 1 선택)|  
 
+<br>
 
-### 마이페이지
+### 6. 마이페이지
 | <img src="https://github.com/user-attachments/assets/4ddc1fbc-5f3f-4373-b510-2c7171261072" alt="mypage" width="500"/> |
 |:---------------------------------:|
 | 닉네임 변경, 상담 기록 확인, 회원 탈퇴 가능 |
 
-### 상담 기록 확인 
+<br>
+
+### 7. 상담 기록 확인 
 
 | <img src="https://github.com/user-attachments/assets/ef9f3113-ea48-4e86-8fc7-edf9ef789da5" alt="chatlist" width="500" /> | <img src="https://github.com/user-attachments/assets/5443b9c9-5995-4617-bdcf-bc829d1b6105" width="500" alt="chathistory"/>
 |:----------------:|:-------:|
 | 챗봇과의 상담 기록 확인 (목록)|특정 기록 선택 열람|
 
-<br>
+<br><br><br>
 
 ## 팀원 소개
 
 - [전지연](https://github.com/jjy12163)
   - 팀장(PM): 정기회의 및 Notion & Github 관리 
   - 백엔드 개발: 챗봇 개발, ERD 설계 
-  - 디자인: 화면 디자인 (Figma) 
+  - 디자인: 화면 디자인 (Figma)   
 - [류현주](https://github.com/h213yun)
-  - 백엔드 개발: 로그인/회원가입, 회원탈퇴, 챗봇 개발 및 채팅 진행/저장, 이미지 분석/저장, 닉네임 변경, ERD 설계 
+  - 백엔드 개발: ERD 설계, 로그인/회원가입, 회원탈퇴, 저장, 닉네임 변경, 챗봇 개발 및 채팅 진행/저장, 이미지 분석/저장
   - 프론트엔드 개발: 프론트엔드 전체 개발 
   - 디자인: 화면 디자인 (CSS)
+  - 배포: AWS 아키텍처 설계 및 배포
 - [정여원](https://github.com/Onedory)
   - AI 개발: 심리상담 챗봇 모델 제작, OpenAPI 개발
   - 백엔드 개발: ERD 설계
   - 디자인: 화면 디자인 (Figma) 
-  - 발표자료(PPT) 제작
 - 임은서
   - AI 개발: 심리상담 챗봇 모델 제작, OpenAPI 개발
   - 백엔드 개발: ERD 설계
   - 디자인: 화면 디자인 (Figma)
-  - 발표자료(PPT) 제작
  
 <br><br>
 
