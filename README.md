@@ -45,7 +45,6 @@
 <br>
 
 ## 기술 스택
-![AWS](https://img.shields.io/badge/AWS-FF6F00?style=flat&logo=amazonaws&logoColor=white)
 ![React](https://img.shields.io/badge/React-18.3.1-61DAFB?style=flat&logo=react&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=flat&logo=javascript&logoColor=black)
 ![Node.js](https://img.shields.io/badge/Node.js-20.16.0-339933?style=flat&logo=node.js&logoColor=white)
@@ -61,8 +60,11 @@
 ![CNN](https://img.shields.io/badge/CNN-FF6F00?style=flat&logoColor=white)
 ![DeepFace](https://img.shields.io/badge/DeepFace-FF69B4?style=flat&logo=deepface&logoColor=black)
 
-![VS Code](https://img.shields.io/badge/VS_Code-1.92.2-007ACC?style=flat&logo=visual-studio-code&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-FF6F00?style=flat&logo=amazonaws&logoColor=white)
+![Gunicorn](https://img.shields.io/badge/gunicorn-19.9.0-green)
+
 ![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white)
+![VS Code](https://img.shields.io/badge/VS_Code-1.92.2-007ACC?style=flat&logo=visual-studio-code&logoColor=white)
 ![Notion](https://img.shields.io/badge/Notion-000000?style=flat&logo=notion&logoColor=white)
 ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=flat&logo=figma&logoColor=white)
 
@@ -139,20 +141,19 @@
 ## 팀원 소개
 
 - [전지연](https://github.com/jjy12163)
-  - 팀장(PM): 정기회의 및 Notion & Github 관리 
+  - 팀장(PM): 정기회의 및 Notion & Github 관리, 발표
   - 백엔드 개발: 챗봇 개발, ERD 설계 
   - 디자인: 화면 디자인 (Figma)   
 - [류현주](https://github.com/h213yun)
-  - 백엔드 개발: ERD 설계, 로그인/회원가입, 회원탈퇴, 저장, 닉네임 변경, 챗봇 개발 및 채팅 진행/저장, 이미지 분석/저장
+  - 백엔드 개발: ERD 설계, 로그인/회원가입, 회원탈퇴, 닉네임 변경, 챗봇(프롬프트 엔지니어링) 및 채팅 진행/저장, 이미지 분석/저장 개발
   - 프론트엔드 개발: 프론트엔드 전체 개발 
-  - 디자인: 화면 디자인 (CSS)
   - 배포: AWS 아키텍처 설계 및 배포
 - [정여원](https://github.com/Onedory)
-  - AI 개발: 심리상담 챗봇 모델 제작, OpenAPI 개발
+  - AI 개발: 챗봇 모델 제작, 개발
   - 백엔드 개발: ERD 설계
   - 디자인: 화면 디자인 (Figma) 
 - 임은서
-  - AI 개발: 심리상담 챗봇 모델 제작, OpenAPI 개발
+  - AI 개발: 챗봇 모델 제작, 개발
   - 백엔드 개발: ERD 설계
   - 디자인: 화면 디자인 (Figma)
  
