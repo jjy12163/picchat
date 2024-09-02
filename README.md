@@ -1,31 +1,21 @@
 # Pic Chat
 
 ## 목차
-1. [웹사이트 살펴보기](#사이트-살펴보기)
-   - [링크](#링크)
-   - [시연 영상](#시연-영상)
-2. [프로젝트 개요](#프로젝트-개요)
+1. [프로젝트 개요](#프로젝트-개요)
    - [제작 이유](#제작-이유)
    - [서비스 목표](#서비스-목표)
    - [개발 기간](#개발-기간)
    - [주요 기능](#주요-기능)
-3. [기술 스택](#기술-스택)
-4. [아키텍처](#아키텍처)
+   - [시연 영상](#시연-영상)
+2. [기술 스택](#기술-스택)
+3. [아키텍처](#아키텍처)
    - [서비스 아키텍처](#서비스-아키텍처)
    - [플로우차트](#플로우차트)
    - [ERD](#데이터베이스)
-5. [기능 상세 설명](#기능-상세-설명)
-6. [팀원 소개](#팀원-소개)
-7. [출처](#표정-분석-이미지-출처)
+4. [기능 상세 설명](#기능-상세-설명)
+5. [팀원 소개](#팀원-소개)
+6. [출처](#표정-분석-이미지-출처)
 
-<br>
-
-## 사이트 살펴보기
-### 링크
-[https://picchat.site](https://picchat.site)
-  
-### 시연 영상
-[Youtube](https://youtu.be/3Vgwy5BEZkw)
 <br><br><br>
 
 ## 프로젝트 개요 
@@ -41,6 +31,9 @@
 ### 주요 기능
 - **사용자의 사진 분석 후 감정 키워드 도출**
 - **해당 감정 키워드를 바탕으로 심리 상담 진행** (`채티` 챗봇 사용)
+
+### 시연 영상
+[Youtube](https://youtu.be/3Vgwy5BEZkw)
 
 <br>
 
@@ -61,7 +54,7 @@
 ![DeepFace](https://img.shields.io/badge/DeepFace-FF69B4?style=flat&logo=deepface&logoColor=black)
 
 ![AWS](https://img.shields.io/badge/AWS-FF6F00?style=flat&logo=amazonaws&logoColor=white)
-![Gunicorn](https://img.shields.io/badge/gunicorn-19.9.0-green)
+![Gunicorn](https://img.shields.io/badge/gunicorn-22.0.0-green)
 
 ![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white)
 ![VS Code](https://img.shields.io/badge/VS_Code-1.92.2-007ACC?style=flat&logo=visual-studio-code&logoColor=white)
