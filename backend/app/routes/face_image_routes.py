@@ -3,12 +3,11 @@ from werkzeug.utils import secure_filename
 from ..models import FaceImage, db
 from io import BytesIO
 import numpy as np
-import cv2, uuid, os, boto3
+import cv2, uuid, boto3, os
 from deepface import DeepFace
 from ..utils import token_required
 
-
-# S3 설정 (IAM Role을 사용하기 때문에 Access key 등 필요 없음)
+# S3 설정
 s3 = boto3.client(
     's3',
     region_name=os.getenv('S3_REGION')
@@ -18,15 +17,16 @@ bp = Blueprint('face_image_routes', __name__, url_prefix='/api/face_image')
 
 def upload_to_s3(file_data, filename):
     try:
-        # 고유한 파일명 생성 
+        # 고유한 파일명 생성 (확장자 유지) 
         ext = os.path.splitext(filename)[1]
         unique_filename = f"{uuid.uuid4().hex}{ext}"
-
+        
         s3.upload_fileobj(
             Fileobj=BytesIO(file_data),
             Bucket=os.getenv('S3_BUCKET_NAME'),
             Key=unique_filename,
         )
+
         # S3 URL 생성
         image_url = f"https://{os.getenv('S3_BUCKET_NAME')}.s3.{os.getenv('S3_REGION')}.amazonaws.com/{unique_filename}"
 
@@ -67,7 +67,6 @@ def upload_and_analyze():
             image_url=image_url
         )
 
-
         db.session.add(face_image)
         db.session.commit()
     
@@ -99,6 +98,7 @@ def download_image(image_id):
 
         # S3 url로 리디렉션 
         return redirect(face_image.image_url)
+
     except Exception as e:
         current_app.logger.error(f"Exception: {str(e)}")
         return jsonify({'error': str(e)}), 500

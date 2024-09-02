@@ -9,9 +9,6 @@ bp = Blueprint('auth_routes', __name__, url_prefix='/api/auth')
 
 client = WebApplicationClient(os.getenv('GOOGLE_CLIENT_ID'))
 
-# HTTPS 무시
-os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
-
 @bp.route('/google')
 def google_login():
     google_provider_cfg = requests.get(os.getenv('GOOGLE_DISCOVERY_URL')).json()

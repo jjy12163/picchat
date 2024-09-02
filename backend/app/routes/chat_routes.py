@@ -149,7 +149,8 @@ def get_chat_history():
                 face_image = FaceImage.query.filter_by(id=chat.faceimage_id).first()
                 if face_image:
                     image_url = face_image.image_url
-                    
+
+>>>>>>> 21a8ea7 (Feat: aws code commit)
             chat_list.append({
                 "id": chat.id,
                 "summary": chat.summary,
